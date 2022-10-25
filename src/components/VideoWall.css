@@ -1,0 +1,11 @@
+.videoDeck{
+    text-align: left;
+}
+
+.videoDeck div{
+    display: inline-block;
+}
+
+#webpack-dev-server-client-overlay-div{
+    display: none;
+}
