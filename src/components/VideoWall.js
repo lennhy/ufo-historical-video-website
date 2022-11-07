@@ -22,8 +22,17 @@ const apiKey = process.env.REACT_APP_API_KEY;
     let player;
 
     const onYouTubeIframeAPIReady = (vidId) => {
- 
-    let player;
+      // First run node Api that will send and store videoid to database
+      fetch('/videos', {
+        method: 'POST',
+        headers: {"Content-type" : "application/json"},
+        body: JSON.stringify(vidId)
+      }).then(()=>{
+        console.log("video id added to database")
+      })
+    }
+
+    // let player;
     window.YT.ready(() => {
         player = new window.YT.Player(`player-${vidId}`, {
           height: "195",
@@ -35,8 +44,8 @@ const apiKey = process.env.REACT_APP_API_KEY;
           },
           playing: 0
         });
-      });
-    }
+    });
+    
     
 
     // 4. The API will call this function when the video player is ready.
@@ -49,7 +58,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
     //    the player should play for six seconds and then stop.
     var done = false;
     const onPlayerStateChange = (event) => {
-      if (event.data == YT.PlayerState.PLAYING && !done) {
+      if (event.data == window.YT.PlayerState.PLAYING && !done) {
         setTimeout(stopVideo, 6000);
         done = true;
       }
@@ -96,17 +105,6 @@ const apiKey = process.env.REACT_APP_API_KEY;
 
     }
     
-    const loadVideoContainer = (item) =>{
-      if(videoClicked !== item.id.videoId){
-        console.log(item.snippet.thumbnails.medium.url)
-        return (
-              <img src={item.snippet.thumbnails.medium.url} onClick={setVideoClicked(item.id.videoId)}/>
-        )
-      }else{
-            onYouTubeIframeAPIReady(videoClicked)
-      }
-    }
-
     
     if (error) {
         console.log(error)

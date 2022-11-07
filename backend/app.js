@@ -14,21 +14,22 @@ const path = require('path');
 
 const app = express();
 
-// app.post("/post", (req, res) => {
-// console.log("Connected to React");
-// res.redirect("/");
+app.post("/videos", (req, res) => {
+console.log("Saving videos to database");
+res.redirect("/");
+});
+
+// app.get("/videos", (req, res) => {
+//   res.send("Get videos from front end");
 // });
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
+app.use(express.static('../public'))
 
-// app.use(express.static('../public'))
-
-app.use(express.static(path.join(__dirname, 'build')));
+// Route to the static minified React files in Build folder
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 const PORT = process.env.PORT || 8080;
