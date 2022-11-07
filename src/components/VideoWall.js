@@ -30,7 +30,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
       }).then(()=>{
         console.log("video id added to database")
       })
-    }
+    
 
     // let player;
     window.YT.ready(() => {
@@ -46,7 +46,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
         });
     });
     
-    
+    }
 
     // 4. The API will call this function when the video player is ready.
     const onPlayerReady = (event) => {
