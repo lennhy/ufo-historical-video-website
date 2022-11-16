@@ -5,7 +5,7 @@ import VideoWall from './components/VideoWall';
 
 function App() {
   return (
-    <div className="App">
+    <div className="parent-container">
       <header className="App-header">
         <VideoWall></VideoWall>
       </header>

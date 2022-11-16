@@ -42,7 +42,6 @@ const apiKey = process.env.REACT_APP_API_KEY;
             onReady: onPlayerReady,
             onStateChange: onPlayerStateChange
           },
-          playing: 0
         });
     });
     
@@ -67,18 +66,21 @@ const apiKey = process.env.REACT_APP_API_KEY;
       player.stopVideo();
     }
 
-    const yesterdaysDate = () => {
+    const lastWeek = () => {
       const yesterday = new Date(new Date())
+      console.log(`Yesterday was ${yesterday}`)
       yesterday.setDate(yesterday.getDate() - 7)
+      console.log(`Yesterday was ${yesterday}`)
       return yesterday
     }
 
 
     useEffect(() => {
-        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=ufo-sighthing&max-results=5&order=relevance&published-after=${yesterdaysDate()}&key=${apiKey}`)
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=ufo-sighthing&max-results=5&order=relevance&published-after=${lastWeek()}&key=${apiKey}`)
         .then(res => res.json())
         .then(
             (result) => {
+              console.log(apiKey)
                 console.log(result.items)
                 setIsLoaded(true);
                 setItems(result.items);
@@ -102,7 +104,6 @@ const apiKey = process.env.REACT_APP_API_KEY;
       setVideoClicked(item.id.videoId)
       console.log(videoClicked)
       onYouTubeIframeAPIReady(videoClicked)
-
     }
     
     
@@ -111,14 +112,21 @@ const apiKey = process.env.REACT_APP_API_KEY;
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else if(items !==[]) {
-        return (   
-        <div className="videoDeck">
+        return (  
+          <div>
+          <div className="header"><h1>Top 5 most recent UFO videos</h1>
+          <div >on onYouTube</div> 
+          </div>
+          <div className="videoDeck">
             {items.map(item => (
-              <div  key={item.id.videoId} id={`player-${item.id.videoId}`} onMouseEnter={()=> setVideoClicked(item.id.videoId)} onClick={()=> loadVideo(item)}>
+              <div className="video-container" key={item.id.videoId} id={`player-${item.id.videoId}`} onMouseEnter={()=> setVideoClicked(item.id.videoId)} onClick={()=> loadVideo(item)}>
                 <img src={item.snippet.thumbnails.medium.url}/>
+                <div className="h4">{item.title}</div>
+                <div className="description">{item.description}</div>
               </div>
             ))}
-        </div>
+          </div>
+        </div> 
         );
     }
 

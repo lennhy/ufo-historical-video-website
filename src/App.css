@@ -1,5 +1,6 @@
+
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
@@ -14,14 +15,29 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+#root{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  background-image: linear-gradient(#000, #373636);
+}
+
+.parent-container{
+  width: 96%;
+  height: 100%;
+}
+
+.header{
+  width: 90%;
+  text-align: center;
+  margin-top: 150px;
+  margin-bottom: 150px;
 }
 
 .App-link {

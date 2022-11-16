@@ -1,11 +1,20 @@
 .videoDeck{
-    text-align: left;
+    /* text-align: left; */
 }
 
 .videoDeck div{
     display: inline-block;
 }
 
+.video-container{
+    margin-left: 5px;
+}
+
+.description{
+    font-size: 12px;
+}
+
 #webpack-dev-server-client-overlay-div{
     display: none;
 }
+
