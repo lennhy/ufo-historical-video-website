@@ -89,6 +89,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
             // instead of a catch() block so that we don't swallow
             // exceptions from actual bugs in components.
             (error) => {
+              console.log(error)
             setIsLoaded(true);
             setError(error);
             }
