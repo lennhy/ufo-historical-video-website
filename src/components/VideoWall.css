@@ -1,14 +1,16 @@
 .videoDeck{
-    /* text-align: left; */
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .videoDeck div{
-    display: inline-block;
+    width: 300px;
+    margin: 15px;
 }
 
 .video-container{
-    margin-left: 5px;
+    margin: 15px;
 }
 
 .description{

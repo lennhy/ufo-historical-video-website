@@ -88,10 +88,8 @@ const apiKey = process.env.REACT_APP_API_KEY;
 
                 // throw new Error(`HTTP error! Status: ${result.status}`);
               }else{
-                console.log(apiKey)
                 console.log(result.items)
                 setIsLoaded(true);
-                console.log(isLoaded)
                 setItems(result.items);
               }
         
@@ -106,15 +104,11 @@ const apiKey = process.env.REACT_APP_API_KEY;
             }
         )
     }, [])
-    // <div id={`player-${item.id.videoId}`}></div>
-    // {onYouTubeIframeAPIReady(item.id.videoId)}
-                  /* {loadVideoContainer(item)} */
+   
 
     const loadVideo = (item) =>{
-      console.log(item)
-      console.log(videoClicked)
+      // Keep track of the video that was clicked 
       setVideoClicked(item.id.videoId)
-      console.log(videoClicked)
       onYouTubeIframeAPIReady(videoClicked)
     }
     
@@ -162,10 +156,13 @@ const apiKey = process.env.REACT_APP_API_KEY;
           </div>
           <div className="videoDeck">
             {items.map(item => (
+              <div>
               <div className="video-container" key={item.id.videoId} id={`player-${item.id.videoId}`} onMouseEnter={()=> setVideoClicked(item.id.videoId)} onClick={()=> loadVideo(item)}>
-                <img src={item.snippet.thumbnails.medium.url}/>
-                <div className="h4">{item.snippet.title}</div>
-                <div className="description">{item.snippet.description}</div>
+              <img src={item.snippet.thumbnails.medium.url}/>
+              </div>
+              {/* Need to hav tis outside of player div because youtube Iframe will remove text after reconstructon of video when user clicks image */}
+              <div className="h4">{item.snippet.title}</div>
+              <div className="description">{item.snippet.description}</div>
               </div>
             ))}
           </div>
