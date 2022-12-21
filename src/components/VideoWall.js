@@ -5,13 +5,13 @@ import './VideoWall.css'; // Tell webpack that Button.js uses these styles
 const apiKey = process.env.REACT_APP_API_KEY;
 
  const VideoWall = () => {
-    // name of value then name of function that obdates the value
+    // name of value then name of function that updates the value
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
     const [players, setPlayers] = useState([]);
     const [videoClicked, setVideoClicked] = useState(null);
-
+    const [loadingMessage, setLoadingMessage] = useState("Loading...");
     const tag = document.createElement("script");
 
     
@@ -80,10 +80,21 @@ const apiKey = process.env.REACT_APP_API_KEY;
         .then(res => res.json())
         .then(
             (result) => {
-              console.log(apiKey)
+              if (result.error) {
+                console.log(result.error.message)
+                setLoadingMessage(result.error.message)
+                setError(result.error)
+                setIsLoaded(false);
+
+                // throw new Error(`HTTP error! Status: ${result.status}`);
+              }else{
+                console.log(apiKey)
                 console.log(result.items)
                 setIsLoaded(true);
+                console.log(isLoaded)
                 setItems(result.items);
+              }
+        
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -110,8 +121,39 @@ const apiKey = process.env.REACT_APP_API_KEY;
     
     if (error) {
         console.log(error)
-    } else if (!isLoaded) {
-        return <div>Loading...</div>;
+    } if (!isLoaded) {
+        return (
+          <div>
+        <div>{loadingMessage}</div>
+        <div>
+        <div className="header"><h1>Top 5 most recent UFO videos</h1>
+        <div ></div> 
+        </div>
+        <div className="videoDeck">
+            <div className="video-container empty">
+              <img src/>
+              <div className="h4"></div>
+              <div className="description"></div>
+            </div>
+            <div className="video-container empty">
+              <img src/>
+              <div className="h4"></div>
+              <div className="description"></div>
+            </div>
+            <div className="video-container empty">
+              <img src/>
+              <div className="h4"></div>
+              <div className="description"></div>
+            </div>
+            <div className="video-container empty">
+              <img src/>
+              <div className="h4"></div>
+              <div className="description"></div>
+            </div>
+        </div>
+      </div> 
+      </div>
+        );
     } else if(items !==[]) {
         return (  
           <div>
@@ -122,8 +164,8 @@ const apiKey = process.env.REACT_APP_API_KEY;
             {items.map(item => (
               <div className="video-container" key={item.id.videoId} id={`player-${item.id.videoId}`} onMouseEnter={()=> setVideoClicked(item.id.videoId)} onClick={()=> loadVideo(item)}>
                 <img src={item.snippet.thumbnails.medium.url}/>
-                <div className="h4">{item.title}</div>
-                <div className="description">{item.description}</div>
+                <div className="h4">{item.snippet.title}</div>
+                <div className="description">{item.snippet.description}</div>
               </div>
             ))}
           </div>

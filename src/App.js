@@ -9,10 +9,6 @@ function App() {
       <header className="App-header">
         <VideoWall></VideoWall>
       </header>
-      <form action="../../post" method="post" 
-              className="form">
-          <button type="submit">Connected?</button>
-      </form>
     </div>
   );
 }
