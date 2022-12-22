@@ -75,7 +75,6 @@ const apiKey = process.env.REACT_APP_API_KEY;
       return yesterday
     }
 
-
     useEffect(() => {
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=ufo-sighthing&max-results=5&order=relevance&published-after=${lastWeek()}&key=${apiKey}`)
         .then(res => res.json())
@@ -106,7 +105,6 @@ const apiKey = process.env.REACT_APP_API_KEY;
         )
     }, [])
    
-
     const loadVideo = (item) =>{
       // Keep track of the video that was clicked 
       setVideoClicked(item.id.videoId)
@@ -118,37 +116,13 @@ const apiKey = process.env.REACT_APP_API_KEY;
         console.log(error)
     } if (!isLoaded) {
         return (
-          <div>
-        <div>{loadingMessage}</div>
         <div>
-        <div className="header"><h1></h1>
-        <div ></div> 
+          <div>{loadingMessage}</div>
+        <div>
+          <div className="header"><h1></h1>
+          </div>
+        </div> 
         </div>
-        <div className="videoDeck">
-            <div className="video-container empty">
-              <img src/>
-              <div className="h4"></div>
-              <div className="description"></div>
-            </div>
-            <div className="video-container empty">
-              <img src/>
-              <div className="h4"></div>
-              <div className="description"></div>
-            </div>
-            <div className="video-container empty">
-              <img src/>
-              <div className="h4"></div>
-              <div className="description"></div>
-            </div>
-            <div className="video-container empty">
-              <img src/>
-              <div className="h4"></div>
-              <div className="description"></div>
-            </div>
-        </div>
-      </div> 
-      </div>
-  
         );
     } else if(items !==[]) {
         return (  
@@ -167,8 +141,6 @@ const apiKey = process.env.REACT_APP_API_KEY;
                 title={item.snippet.title} 
                 description={item.snippet.description} 
               />
-              {/* <div className="h4">{item.snippet.title}</div>
-              <div className="description">{item.snippet.description}</div> */}
               </div>
             ))}
           </div>
