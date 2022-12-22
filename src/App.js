@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="parent-container">
       <header className="App-header">
-        <VideoWall></VideoWall>
+        <VideoWall />
       </header>
     </div>
   );

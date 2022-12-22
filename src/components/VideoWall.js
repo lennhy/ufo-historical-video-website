@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { version } from 'react';
+import ImageCard from "./ImageCard";
 import './VideoWall.css'; // Tell webpack that Button.js uses these styles
 
 const apiKey = process.env.REACT_APP_API_KEY;
@@ -80,7 +81,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
         .then(res => res.json())
         .then(
             (result) => {
-              if (result.error) {
+              if (result.error || result === [] || result === undefined || result === "") {
                 console.log(result.error.message)
                 setLoadingMessage(result.error.message)
                 setError(result.error)
@@ -120,7 +121,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
           <div>
         <div>{loadingMessage}</div>
         <div>
-        <div className="header"><h1>Top 5 most recent UFO videos</h1>
+        <div className="header"><h1></h1>
         <div ></div> 
         </div>
         <div className="videoDeck">
@@ -147,6 +148,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
         </div>
       </div> 
       </div>
+  
         );
     } else if(items !==[]) {
         return (  
@@ -161,8 +163,12 @@ const apiKey = process.env.REACT_APP_API_KEY;
               <img src={item.snippet.thumbnails.medium.url}/>
               </div>
               {/* Need to hav tis outside of player div because youtube Iframe will remove text after reconstructon of video when user clicks image */}
-              <div className="h4">{item.snippet.title}</div>
-              <div className="description">{item.snippet.description}</div>
+              <ImageCard 
+                title={item.snippet.title} 
+                description={item.snippet.description} 
+              />
+              {/* <div className="h4">{item.snippet.title}</div>
+              <div className="description">{item.snippet.description}</div> */}
               </div>
             ))}
           </div>

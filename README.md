@@ -1,3 +1,10 @@
+# Youtube API Reference
+https://developers.google.com/youtube/iframe_api_reference
+
+# Youtube Search API
+https://developers.google.com/youtube/v3/docs/search/list
+(Search list deprecated)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
