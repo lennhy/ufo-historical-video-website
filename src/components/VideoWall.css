@@ -1,0 +1,29 @@
+.videoDeck{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.videoDeck div{
+    width: 320px;
+    margin: 5px;
+}
+
+.video-container{
+    
+}
+
+.description{
+    font-size: 12px;
+}
+
+#webpack-dev-server-client-overlay-div{
+    display: none;
+}
+
+.empty{
+    width: 300px;
+    height: 225px;
+    background-color: #000;
+    margin: 10px;
+}
