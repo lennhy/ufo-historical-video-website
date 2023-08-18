@@ -88,7 +88,6 @@ const apiKey = process.env.REACT_APP_API_KEY;
 
                 // throw new Error(`HTTP error! Status: ${result.status}`);
               }else{
-                console.log(result.items)
                 setIsLoaded(true);
                 setItems(result.items);
               }
