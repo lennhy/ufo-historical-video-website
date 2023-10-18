@@ -127,7 +127,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
         return (  
           <div>
           <div className="header"><h1>Top 5 most recent UFO videos</h1>
-          <div >on onYouTube</div> 
+          <div >on YouTube</div> 
           </div>
           <div className="videoDeck">
             {items.map(item => (
